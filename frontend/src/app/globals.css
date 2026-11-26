@@ -1,0 +1,371 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   AI Academy — design tokens (light only)
+   Colours come from the Tradevics mark: cyan and orchid as the two
+   light sources glowing behind frosted glass, indigo for action.
+   Accents are deepened so they hold contrast on white.
+------------------------------------------------------------------- */
+:root {
+  --paper: #f5f6fa;
+  --tint: #1b2266; /* ink used for overlays, lines and shadows */
+  --text: #0f1433;
+  --muted: #4a5276;
+  --faint: #7a82a5;
+  --line: rgba(27, 34, 102, 0.1);
+  --line-strong: rgba(27, 34, 102, 0.16);
+  --cyan: #0b93ab;
+  --cyan-glow: #35e0f0;
+  --orchid: #b02fd1;
+  --orchid-glow: #d84bf5;
+  --indigo: #4646e8;
+  --indigo-hi: #5a5af2;
+  --mint: #0f9a68;
+  --amber: #b86e00;
+  --rose: #d6304f;
+  --radius-panel: 22px;
+  --radius-ctl: 12px;
+}
+
+/* For dark artwork (video stage, course covers, certificates) */
+.on-dark {
+  --text: #eef1ff;
+  --muted: #a7afd3;
+  --faint: #737ca6;
+  --line: rgba(220, 228, 255, 0.14);
+  --cyan: #35e0f0;
+  color: var(--text);
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-tint: var(--tint);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-cyan: var(--cyan);
+  --color-orchid: var(--orchid);
+  --color-indigo: var(--indigo);
+  --color-mint: var(--mint);
+  --color-amber: var(--amber);
+  --color-rose: var(--rose);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-body);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: light;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--paper);
+  color: var(--text);
+  font-family: var(--font-body), var(--font-bangla), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Bangla: switch body + display to the Bengali face, loosen leading */
+html[lang="bn"] body {
+  font-family: var(--font-bangla), var(--font-body), system-ui, sans-serif;
+}
+html[lang="bn"] .font-display {
+  font-family: var(--font-bangla), var(--font-body), sans-serif;
+  letter-spacing: 0;
+  font-weight: 600;
+}
+html[lang="bn"] h1,
+html[lang="bn"] h2 {
+  line-height: 1.35;
+}
+
+::selection {
+  background: rgba(53, 224, 240, 0.3);
+}
+
+:focus-visible {
+  outline: 2px solid var(--indigo);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+.font-display {
+  font-family: var(--font-body), var(--font-bangla), sans-serif;
+  letter-spacing: -0.025em;
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* grid children may shrink below their content (truncated text, wide tables) */
+@layer base {
+  .grid > * {
+    min-width: 0;
+  }
+}
+
+/* Flat paper ground; the glass panels carry depth through blur, hairline
+   borders and soft shadow rather than coloured light. */
+.ambient {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: var(--paper);
+}
+
+@layer components {
+  /* ------------------------------------------------------------------
+     Glass surfaces
+  ------------------------------------------------------------------- */
+  .glass {
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid rgba(27, 34, 102, 0.08);
+    box-shadow:
+      0 1px 2px rgba(15, 20, 51, 0.04),
+      0 12px 32px -20px rgba(15, 20, 51, 0.18);
+    backdrop-filter: blur(22px) saturate(170%);
+    -webkit-backdrop-filter: blur(22px) saturate(170%);
+    border-radius: var(--radius-panel);
+  }
+  .glass-strong {
+    background: rgba(255, 255, 255, 0.94);
+    border: 1px solid rgba(27, 34, 102, 0.1);
+    box-shadow:
+      0 1px 2px rgba(15, 20, 51, 0.05),
+      0 30px 70px -30px rgba(15, 20, 51, 0.3);
+    backdrop-filter: blur(28px) saturate(180%);
+    -webkit-backdrop-filter: blur(28px) saturate(180%);
+    border-radius: var(--radius-panel);
+  }
+  .glass-inset {
+    background: rgba(27, 34, 102, 0.035);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  /* emphasis ring — reserved for the panel that matters most on a screen */
+  .edge-lit {
+    border-color: rgba(70, 70, 232, 0.28);
+    box-shadow:
+      0 0 0 3px rgba(70, 70, 232, 0.06),
+      0 1px 2px rgba(15, 20, 51, 0.05),
+      0 24px 50px -28px rgba(15, 20, 51, 0.28);
+  }
+
+  /* ------------------------------------------------------------------
+     Controls
+  ------------------------------------------------------------------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 2.5rem;
+    padding: 0 1.1rem;
+    border-radius: 999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    white-space: nowrap;
+    transition:
+      background 0.18s,
+      border-color 0.18s,
+      color 0.18s,
+      box-shadow 0.18s,
+      transform 0.12s;
+    cursor: pointer;
+    user-select: none;
+  }
+  .btn:active {
+    transform: translateY(1px);
+  }
+  .btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+  .btn-primary {
+    background: var(--indigo);
+    color: #fff;
+    box-shadow:
+      0 1px 2px rgba(15, 20, 51, 0.12),
+      0 6px 16px -8px rgba(70, 70, 232, 0.6);
+  }
+  .btn-primary:hover:not(:disabled) {
+    background: var(--indigo-hi);
+  }
+  .btn-glass {
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid var(--line-strong);
+    color: var(--text);
+    backdrop-filter: blur(12px);
+  }
+  .btn-glass:hover:not(:disabled) {
+    background: #fff;
+    border-color: rgba(27, 34, 102, 0.25);
+  }
+  .btn-ghost {
+    color: var(--muted);
+  }
+  .btn-ghost:hover:not(:disabled) {
+    color: var(--text);
+    background: rgba(27, 34, 102, 0.05);
+  }
+  .btn-danger {
+    background: rgba(214, 48, 79, 0.08);
+    color: var(--rose);
+    border: 1px solid rgba(214, 48, 79, 0.25);
+  }
+  .btn-danger:hover:not(:disabled) {
+    background: rgba(214, 48, 79, 0.14);
+  }
+  .btn-sm {
+    height: 2rem;
+    padding: 0 0.8rem;
+    font-size: 0.8rem;
+  }
+  .btn-lg {
+    height: 3rem;
+    padding: 0 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .field {
+    width: 100%;
+    height: 2.6rem;
+    padding: 0 0.9rem;
+    border-radius: var(--radius-ctl);
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid var(--line-strong);
+    color: var(--text);
+    font-size: 0.9rem;
+    transition:
+      border-color 0.15s,
+      box-shadow 0.15s;
+  }
+  textarea.field {
+    height: auto;
+    padding: 0.7rem 0.9rem;
+    line-height: 1.55;
+    resize: vertical;
+  }
+  select.field {
+    appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%234a5276' stroke-width='2.5'><path d='m6 9 6 6 6-6'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 0.8rem center;
+    padding-right: 2.2rem;
+  }
+  .field::placeholder {
+    color: var(--faint);
+  }
+  .field:focus {
+    outline: none;
+    border-color: rgba(70, 70, 232, 0.55);
+    box-shadow: 0 0 0 4px rgba(70, 70, 232, 0.12);
+  }
+  .field:disabled {
+    background: rgba(27, 34, 102, 0.04);
+    color: var(--muted);
+  }
+
+  .label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 0.4rem;
+  }
+
+  /* table */
+  .tbl {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+  }
+  .tbl th {
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.78rem;
+    color: var(--faint);
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid var(--line);
+    white-space: nowrap;
+  }
+  .tbl td {
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid var(--line);
+    vertical-align: middle;
+  }
+  .tbl tr:last-child td {
+    border-bottom: 0;
+  }
+  .tbl tbody tr:hover td {
+    background: rgba(27, 34, 102, 0.025);
+  }
+}
+
+/* scrollbars */
+.thin-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(27, 34, 102, 0.2) transparent;
+}
+
+input[type="range"] {
+  accent-color: var(--cyan-glow);
+}
+
+/* orchestrated hero entrance — the only non-interactive motion on the site */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.rise {
+  animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+@keyframes blink {
+  50% {
+    opacity: 0.2;
+  }
+}
+.live-dot {
+  animation: blink 1.4s ease-in-out infinite;
+}
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+}
+.toast-in {
+  animation: toast-in 0.22s ease-out;
+}
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+}
+.pop {
+  animation: pop 0.18s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

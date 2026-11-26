@@ -1,0 +1,36 @@
+# Front-end (Next.js) ignores. Repository-wide rules are in ../.gitignore.
+
+# Dependencies
+/node_modules
+/.pnp
+.pnp.*
+
+# Next.js build output
+/.next/
+/out/
+/build
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Environment — keep .env.example committed if one is added
+.env*
+!.env.example
+
+# Testing
+/coverage
+/playwright-report
+/test-results
+/.playwright-mcp
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Misc
+.DS_Store
+*.pem
+.vercel
