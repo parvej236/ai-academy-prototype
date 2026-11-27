@@ -45,10 +45,9 @@ export default function Dashboard() {
         {current && (
           <Panel lit className="overflow-hidden">
             <div className="grid h-full sm:grid-cols-[200px_1fr]">
-              <Cover code={current.code} hue={current.hue} className="h-36 sm:h-full" />
+              <Cover code={current.code} hue={current.hue} category={current.category} className="h-36 sm:h-full" />
               <div className="p-6">
-                <p className="text-xs text-faint">Continue where you left off</p>
-                <h2 className="font-display mt-2 text-lg font-semibold">{current.title}</h2>
+                <h2 className="font-display text-lg font-semibold">{current.title}</h2>
                 <p className="mt-1 text-sm text-muted">
                   Next: {current.modules.flatMap((m) => m.lessons).find((l) => !(completed[current.slug] ?? []).includes(l.id))?.title ?? "Course complete"}
                 </p>
@@ -172,7 +171,7 @@ export default function Dashboard() {
       <Panel>
         <PanelHead title="Recent results" action={<Link href="/app/exams" className="btn btn-ghost btn-sm">All results</Link>} />
         <div className="overflow-x-auto">
-          <table className="tbl">
+          <table className="tbl tbl-fit">
             <thead>
               <tr>
                 <th>Assessment</th>

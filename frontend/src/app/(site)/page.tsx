@@ -1,14 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { Award, BookOpen, ClipboardCheck, FlaskConical, Radio, Star } from "lucide-react";
+import { Radio, Star } from "lucide-react";
 import { SimConsole } from "@/components/landing/sim-console";
+import { TourVideo } from "@/components/landing/tour-video";
+import { CertifyArt, ExamArt, LabArt, LearnArt, LiveArt } from "@/components/illustrations";
 import { Avatar, Badge, Cover } from "@/components/ui";
 import { courses, fmtBDT, fmtDateTime, forumGroups, lessonCount, liveClasses, mentorReports, plans } from "@/lib/data";
 import { useT } from "@/lib/i18n";
 
 export default function Home() {
-  const { t, n } = useT();
+  const { t, n, lang } = useT();
   const featured = courses.filter((c) => c.status === "published");
   const lead = featured[0];
   const rest = featured.slice(1, 5);
@@ -23,10 +25,7 @@ export default function Home() {
       <section className="px-4 pb-24 pt-14 sm:px-6 lg:pt-24">
         <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[1fr_1.12fr]">
           <div>
-            <p className="rise inline-flex items-center gap-2 rounded-full border border-line bg-white px-3 py-1 text-[0.8rem] text-muted" style={{ animationDelay: "0ms" }}>
-              <span className="h-1.5 w-1.5 rounded-full bg-indigo" /> {t("Module 13 of the Tradevics AI platform")}
-            </p>
-            <h1 className="rise font-display mt-6 text-[2.4rem] font-semibold leading-[1.08] sm:text-[3.2rem] lg:text-[3.6rem]" style={{ animationDelay: "80ms" }}>
+            <h1 className="rise font-display text-[2.4rem] font-semibold leading-[1.08] sm:text-[3.2rem] lg:text-[3.6rem]" style={{ animationDelay: "80ms" }}>
               {t("Rehearse the assessment before the officer asks.")}
             </h1>
             <p className="rise mt-6 max-w-[34rem] text-[1.06rem] leading-relaxed text-muted" style={{ animationDelay: "160ms" }}>
@@ -42,18 +41,11 @@ export default function Home() {
                 {t("Browse courses")}
               </Link>
             </div>
-            <dl className="rise mt-12 grid max-w-md grid-cols-3 gap-6 border-t border-line pt-6 text-sm" style={{ animationDelay: "320ms" }}>
-              {[
-                ["Practitioners trained", "14,800"],
-                ["Lab attempts graded", "212,000"],
-                ["Licensing exam pass rate", "78%"],
-              ].map(([k, v]) => (
-                <div key={k}>
-                  <dd className="tnum font-display text-xl font-semibold">{n(v)}</dd>
-                  <dt className="mt-1 text-xs leading-snug text-faint">{t(k)}</dt>
-                </div>
-              ))}
-            </dl>
+            <p className="rise tnum mt-10 max-w-md border-t border-line pt-5 text-sm leading-relaxed text-muted" style={{ animationDelay: "320ms" }}>
+              {lang === "bn"
+                ? `${n("14,800")} জন পেশাজীবী প্রশিক্ষণ নিয়েছেন। লাইসেন্সিং পরীক্ষায় আমাদের শিক্ষার্থীদের পাসের হার ${n("78")}%।`
+                : "14,800 practitioners trained so far. 78% of our learners pass the C&F licensing exam."}
+            </p>
           </div>
           <div className="rise" style={{ animationDelay: "200ms" }}>
             <SimConsole />
@@ -80,6 +72,27 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ---------- Product tour video ---------- */}
+      <section className="px-4 pt-32 sm:px-6" id="tour">
+        <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[0.8fr_1.2fr]">
+          <div>
+            <h2 className={h2}>{t("See how practitioners use AI Academy")}</h2>
+            <p className="mt-4 max-w-md leading-relaxed text-muted">
+              {t("A short narrated tour: a lesson, a lab case against the AI officer, an exam, your dashboard, a live class and the admin portal.")}
+            </p>
+            <ul className="mt-7 space-y-3 text-sm">
+              {["Study with AI lecture notes", "Argue a real case with the Simulator Agent", "Get scored against the examiner's rubric", "Join expert live classes with automatic notes"].map((x) => (
+                <li key={x} className="flex items-center gap-3">
+                  <span className="h-2 w-2 shrink-0 rotate-45 rounded-[2px] bg-indigo" />
+                  {t(x)}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <TourVideo />
+        </div>
+      </section>
+
       {/* ---------- How it works (a real sequence) ---------- */}
       <section className="px-4 pt-32 sm:px-6" id="lab">
         <div className="mx-auto max-w-7xl">
@@ -87,20 +100,20 @@ export default function Home() {
             <h2 className={h2}>{t("From first lesson to a certificate an employer can check")}</h2>
             <p className="mt-4 text-muted">{t("Every course follows the same path. You can't skip to the certificate.")}</p>
           </div>
-          <ol className="mt-12 grid gap-px overflow-hidden rounded-[22px] border border-line bg-line md:grid-cols-4">
+          <ol className="mt-12 grid gap-px overflow-hidden rounded-[22px] border border-line bg-line md:grid-cols-2 lg:grid-cols-4">
             {[
-              { icon: BookOpen, h: "Learn", d: "Short video lessons, readings and the legal texts you will cite, written by former officials and senior practitioners." },
-              { icon: FlaskConical, h: "Practise in the lab", d: "The Simulator Agent plays the assessing officer on a real consignment. You answer; it pushes back." },
-              { icon: ClipboardCheck, h: "Get examined", d: "Timed MCQs, mock papers, case studies and a viva board. The Examiner Agent sets fresh questions each attempt." },
-              { icon: Award, h: "Get certified", d: "Pass and receive a certificate with a public serial number anyone can verify." },
+              { Art: LearnArt, h: "Learn", d: "Short video lessons, readings and the legal texts you will cite, written by former officials and senior practitioners." },
+              { Art: LabArt, h: "Practise in the lab", d: "The Simulator Agent plays the assessing officer on a real consignment. You answer; it pushes back." },
+              { Art: ExamArt, h: "Get examined", d: "Timed MCQs, mock papers, case studies and a viva board. The Examiner Agent sets fresh questions each attempt." },
+              { Art: CertifyArt, h: "Get certified", d: "Pass and receive a certificate with a public serial number anyone can verify." },
             ].map((s, i) => (
-              <li key={s.h} className="bg-white/90 p-7">
-                <div className="flex items-center justify-between">
-                  <s.icon size={20} className="text-indigo" strokeWidth={1.8} />
+              <li key={s.h} className="bg-white/90 p-5">
+                <s.Art className="w-full rounded-[14px]" />
+                <div className="mt-5 flex items-center justify-between px-2">
+                  <h3 className="font-semibold">{t(s.h)}</h3>
                   <span className="tnum text-sm font-semibold text-faint">{n(String(i + 1).padStart(2, "0"))}</span>
                 </div>
-                <h3 className="mt-6 font-semibold">{t(s.h)}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted">{t(s.d)}</p>
+                <p className="mt-2 px-2 pb-2 text-sm leading-relaxed text-muted">{t(s.d)}</p>
               </li>
             ))}
           </ol>
@@ -147,8 +160,8 @@ export default function Home() {
             </Link>
           </div>
           <div className="mt-10 grid gap-5 lg:grid-cols-[1.1fr_1fr]">
-            <Link href={`/courses/${lead.slug}`} className="glass group flex flex-col overflow-hidden transition-shadow hover:shadow-lg">
-              <Cover code={lead.code} hue={lead.hue} className="h-56" />
+            <Link href={`/courses/${lead.slug}`} className="glass lift group flex flex-col overflow-hidden">
+              <Cover code={lead.code} hue={lead.hue} category={lead.category} className="h-56" />
               <div className="flex flex-1 flex-col p-7">
                 <div className="flex flex-wrap gap-2">
                   <Badge tone="indigo">{lead.category}</Badge>
@@ -169,7 +182,7 @@ export default function Home() {
               {rest.map((c) => (
                 <li key={c.slug}>
                   <Link href={`/courses/${c.slug}`} className="flex items-center gap-4 p-5 transition-colors hover:bg-tint/[0.025]">
-                    <Cover code={c.code} hue={c.hue} className="h-14 w-14 shrink-0 rounded-xl [&>span:last-child]:hidden" />
+                    <Cover code={c.code} hue={c.hue} category={c.category} className="h-14 w-14 shrink-0 rounded-xl [&>span:last-child]:hidden" />
                     <div className="min-w-0 flex-1">
                       <p className="truncate font-semibold">{c.title}</p>
                       <p className="mt-1 text-xs text-faint">
@@ -191,8 +204,11 @@ export default function Home() {
       <section className="px-4 pt-32 sm:px-6">
         <div className="mx-auto grid max-w-7xl gap-5 lg:grid-cols-[1.2fr_1fr]">
           <div className="glass p-7 sm:p-9">
-            <div className="flex items-center gap-2 text-sm text-muted">
-              <Radio size={16} className="text-orchid" /> {t("Expert-led live classes")}
+            <div className="flex items-start justify-between gap-6">
+              <div className="flex items-center gap-2 text-sm text-muted">
+                <Radio size={16} className="text-orchid" /> {t("Expert-led live classes")}
+              </div>
+              <LiveArt className="hidden w-40 shrink-0 rounded-xl sm:block" />
             </div>
             <h2 className="font-display mt-4 text-2xl font-semibold tracking-tight">{t("When the rules change, an expert explains them that week")}</h2>
             <p className="mt-3 max-w-lg text-sm leading-relaxed text-muted">

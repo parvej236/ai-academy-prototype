@@ -28,7 +28,7 @@ AI Academy is the training arm of Tradevics AI and is delivered as **Module 13**
 | **Community** | Discussion groups for importers, C&F agents, tax practitioners, freight forwarders and exporters |
 | **Mentor & tutor portal** | Assigned students, at-risk flags, text-based training reports, session scheduling |
 | **Admin portal** | Course CMS with publishing workflow, master schedule, documents, enrolments, live/video control, lab case builder, question bank, exam builder, grading queue, analytics, mentor assignment, moderation, certificates, roles and tenants, billing, security, notifications, API keys, AI agent settings |
-| **Public site** | Landing page with a playable lab case, course catalog, pricing and checkout, certificate verification |
+| **Public site** | Landing page with a playable lab case and a narrated product tour video (English and Bangla voice-over), course catalog, pricing and checkout, certificate verification |
 
 The interface is available in **English and Bangla**, with a light, glass-style design. [docs/01-requirements-map.md](docs/01-requirements-map.md) maps every client requirement to its screens.
 
@@ -96,6 +96,7 @@ ai-academy/
 │       │   └── admin/       Admin portal (/admin)
 │       ├── components/      UI primitives, charts, layout shells
 │       └── lib/             Dummy data, client state, i18n
+├── tools/tour-video/        Scripts that record the home-page product tour
 └── logo.png                 Original brand logo
 ```
 
@@ -106,6 +107,8 @@ ai-academy/
 | [Requirements map](docs/01-requirements-map.md) | Each client requirement and the screens that implement it |
 | [Design system](docs/02-design-system.md) | Colours, typography, components and design rules |
 | [Front-end architecture](docs/03-frontend-architecture.md) | Code layout, state, translations and backend integration points |
+| [Tech stack](docs/04-tech-stack.md) | Current front-end stack and the recommended backend, database, AI services and hosting |
+| [Work plan](docs/05-work-plan.md) | Six-month, week-by-week plan for a team of two |
 
 ## Roadmap
 

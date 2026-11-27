@@ -5,6 +5,7 @@ import { FileText, FlaskConical, ListChecks, PlayCircle, X } from "lucide-react"
 import { useEffect, useState, type ReactNode } from "react";
 import { useStore } from "@/lib/store";
 import { useT } from "@/lib/i18n";
+import { CategoryGlyph, EmptyArt } from "@/components/illustrations";
 import type { PublishState } from "@/lib/data";
 
 export function cx(...c: (string | false | null | undefined)[]) {
@@ -97,7 +98,7 @@ export function Bar({ value, tone = "cyan", className }: { value: number; tone?:
   const color = { cyan: "var(--cyan)", orchid: "var(--orchid)", mint: "var(--mint)", amber: "var(--amber)", rose: "var(--rose)", indigo: "var(--indigo)" }[tone];
   return (
     <div className={cx("h-1.5 w-full overflow-hidden rounded-full bg-tint/8", className)} role="progressbar" aria-valuenow={value} aria-valuemin={0} aria-valuemax={100}>
-      <div className="h-full rounded-full transition-[width] duration-500" style={{ width: `${Math.max(0, Math.min(100, value))}%`, background: color }} />
+      <div className="h-full w-full origin-left rounded-full transition-transform duration-500 ease-[var(--ease-out)]" style={{ transform: `scaleX(${Math.max(0, Math.min(100, value)) / 100})`, background: color }} />
     </div>
   );
 }
@@ -155,7 +156,7 @@ export function Modal({ open, onClose, title, children, wide }: { open: boolean;
   if (!open) return null;
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center p-4 sm:items-center" role="dialog" aria-modal="true" aria-label={title}>
-      <div className="absolute inset-0 bg-[#1b2266]/20 backdrop-blur-sm" onClick={onClose} />
+      <div className="fade-in absolute inset-0 bg-[#1b2266]/20 backdrop-blur-sm" onClick={onClose} />
       <div className={cx("glass-strong pop relative max-h-[88vh] w-full overflow-y-auto thin-scroll", wide ? "max-w-3xl" : "max-w-lg")}>
         <div className="sticky top-0 z-10 flex items-center justify-between border-b border-line bg-tint/80 px-6 py-4 backdrop-blur-xl">
           <h2 className="font-semibold">{title}</h2>
@@ -177,9 +178,9 @@ export function Switch({ on, onChange, label }: { on: boolean; onChange: (v: boo
       aria-checked={on}
       aria-label={label}
       onClick={() => onChange(!on)}
-      className={cx("relative h-6 w-11 shrink-0 rounded-full border transition-colors", on ? "border-indigo bg-indigo" : "border-line bg-tint/10")}
+      className={cx("relative h-6 w-11 shrink-0 rounded-full border transition-colors duration-150", on ? "border-indigo bg-indigo" : "border-line bg-tint/10")}
     >
-      <span className={cx("absolute top-0.5 h-[18px] w-[18px] rounded-full transition-all", on ? "left-[22px] bg-white" : "left-0.5 bg-white shadow")} />
+      <span className={cx("absolute left-0.5 top-0.5 h-[18px] w-[18px] rounded-full bg-white shadow transition-transform duration-200 ease-[var(--ease-out)]", on && "translate-x-5")} />
     </button>
   );
 }
@@ -213,7 +214,7 @@ export function Empty({ title, body, action }: { title: string; body?: string; a
   if (body) body = t(body);
   return (
     <div className="flex flex-col items-center px-6 py-14 text-center">
-      <div className="mb-4 h-10 w-10 rotate-45 rounded-[10px] border border-tint/15 bg-tint/5" />
+      <EmptyArt className="mb-4 h-20 w-auto" />
       <p className="font-semibold">{title}</p>
       {body && <p className="mt-1 max-w-sm text-sm text-muted">{body}</p>}
       {action && <div className="mt-5">{action}</div>}
@@ -247,15 +248,12 @@ export function Avatar({ name, size = 32, hue }: { name: string; size?: number; 
 }
 
 /* ---------- Course cover: generated, no stock imagery ---------- */
-export function Cover({ code, hue, className }: { code: string; hue: number; className?: string }) {
+export function Cover({ code, hue, category, className }: { code: string; hue: number; category?: string; className?: string }) {
   return (
-    <div
-      className={cx("on-dark relative overflow-hidden", className)}
-      style={{ background: `hsl(${hue} 42% 20%)` }}
-      aria-hidden
-    >
-      <span className="font-display absolute bottom-2 right-3 text-[3.2rem] font-bold leading-none text-white/15">{code}</span>
-      <span className="absolute left-4 top-4 h-6 w-6 rotate-45 rounded-[6px] border border-tint/40 bg-tint/10 backdrop-blur" />
+    <div className={cx("on-dark relative overflow-hidden", className)} style={{ background: `hsl(${hue} 45% 24%)` }} aria-hidden>
+      {category && <CategoryGlyph category={category} className="absolute left-1/2 top-1/2 h-[44%] max-h-24 min-h-6 w-auto -translate-x-1/2 -translate-y-1/2 opacity-90" />}
+      <span className="font-display absolute bottom-2 right-3 text-[2.6rem] font-bold leading-none text-white/[0.14]">{code}</span>
+      <span className="absolute left-4 top-4 h-5 w-5 rotate-45 rounded-[5px] border border-white/35 bg-white/10" />
     </div>
   );
 }

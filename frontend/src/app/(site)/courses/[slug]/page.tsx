@@ -133,7 +133,7 @@ export default function CourseDetail() {
         {/* sticky enrol card */}
         <aside className="lg:sticky lg:top-24 lg:self-start">
           <div className="glass-strong edge-lit overflow-hidden">
-            <Cover code={c.code} hue={c.hue} className="h-40" />
+            <Cover code={c.code} hue={c.hue} category={c.category} className="h-40" />
             <div className="p-6">
               <p className="text-sm text-muted">Included in Monthly, Professional and Firm plans</p>
               {isEnrolled ? (

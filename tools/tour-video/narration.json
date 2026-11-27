@@ -1,0 +1,65 @@
+{
+  "voices": { "en": "en-US-AndrewNeural", "bn": "bn-BD-PradeepNeural" },
+  "scenes": [
+    {
+      "en": { "say": "This is AI Academy, the customs and trade training platform from Tradevics AI.", "show": "This is AI Academy, the customs and trade training platform from Tradevics AI." },
+      "bn": { "say": "এটি এআই একাডেমি, ট্রেডভিক্স এআই-এর কাস্টমস ও বাণিজ্য প্রশিক্ষণ প্ল্যাটফর্ম।" }
+    },
+    {
+      "en": { "say": "It's built for importers, C and F agents, and tax practitioners in Bangladesh.", "show": "It's built for importers, C&F agents and tax practitioners in Bangladesh." },
+      "bn": { "say": "বাংলাদেশের আমদানিকারক, সিঅ্যান্ডএফ এজেন্ট ও ট্যাক্স প্র্যাকটিশনারদের জন্য এটি তৈরি।" }
+    },
+    {
+      "en": { "say": "Choose from courses on HS classification, customs valuation, ASYCUDA, VAT, rules of origin, and letters of credit.", "show": "Choose from courses on HS classification, customs valuation, ASYCUDA, VAT, rules of origin and letters of credit." },
+      "bn": { "say": "এইচএস কোড শ্রেণিবিন্যাস, কাস্টমস মূল্যায়ন, অ্যাসাইকুডা, ভ্যাট, রুলস অব অরিজিন ও এলসি নিয়ে কোর্স বেছে নিন।" }
+    },
+    {
+      "en": { "say": "Every lesson comes with AI lecture notes, a full transcript, and the legal texts you'll cite.", "show": "Every lesson comes with AI lecture notes, a full transcript and the legal texts you'll cite." },
+      "bn": { "say": "প্রতিটি লেসনের সঙ্গে থাকে এআই লেকচার নোট, পূর্ণ ট্রান্সক্রিপ্ট আর প্রয়োজনীয় আইনের টেক্সট।" }
+    },
+    {
+      "en": { "say": "In the practical lab, the Simulator Agent plays the assessing officer on a real consignment.", "show": "In the practical lab, the Simulator Agent plays the assessing officer on a real consignment." },
+      "bn": { "say": "প্র্যাকটিক্যাল ল্যাবে সিমুলেটর এজেন্ট বাস্তব একটি চালানে অ্যাসেসিং অফিসারের ভূমিকা নেয়।" }
+    },
+    {
+      "en": { "say": "You answer, and the Evaluation Engine scores you against the examiner's rubric, with feedback on every point.", "show": "You answer, and the Evaluation Engine scores you against the examiner's rubric, with feedback on every point." },
+      "bn": { "say": "আপনি উত্তর দেন, আর ইভ্যালুয়েশন ইঞ্জিন পরীক্ষকের রুব্রিক অনুযায়ী প্রতিটি বিষয়ে নম্বর ও মতামত দেয়।" }
+    },
+    {
+      "en": { "say": "Sit timed exams, mock papers, and case studies. The Examiner Agent sets fresh questions on every attempt.", "show": "Sit timed exams, mock papers and case studies. The Examiner Agent sets fresh questions on every attempt." },
+      "bn": { "say": "সময়বদ্ধ পরীক্ষা, মক পেপার ও কেস স্টাডি দিন। প্রতিবার এক্সামিনার এজেন্ট নতুন প্রশ্ন দেয়।" }
+    },
+    {
+      "en": { "say": "Your dashboard shows where you're strong, where you're behind, and what to study next.", "show": "Your dashboard shows where you're strong, where you're behind, and what to study next." },
+      "bn": { "say": "ড্যাশবোর্ডে দেখবেন কোথায় আপনি এগিয়ে, কোথায় পিছিয়ে, আর এরপর কী পড়বেন।" }
+    },
+    {
+      "en": { "say": "When the rules change, experts teach live. Transcripts, notes, and slides are produced automatically.", "show": "When the rules change, experts teach live. Transcripts, notes and slides are produced automatically." },
+      "bn": { "say": "নিয়ম বদলালে বিশেষজ্ঞরা লাইভ ক্লাস নেন। ট্রান্সক্রিপ্ট, নোট ও স্লাইড তৈরি হয় স্বয়ংক্রিয়ভাবে।" }
+    },
+    {
+      "en": { "say": "Ask questions in discussion groups for your profession.", "show": "Ask questions in discussion groups for your profession." },
+      "bn": { "say": "নিজের পেশার আলোচনা গ্রুপে প্রশ্ন করুন।" }
+    },
+    {
+      "en": { "say": "Your mentor reviews your progress, writes a monthly report, and meets you one to one.", "show": "Your mentor reviews your progress, writes a monthly report and meets you one-to-one." },
+      "bn": { "say": "আপনার মেন্টর অগ্রগতি দেখেন, মাসিক রিপোর্ট লেখেন এবং আলাদাভাবে সময় দেন।" }
+    },
+    {
+      "en": { "say": "Pass, and you earn a certificate that any employer can verify online.", "show": "Pass, and you earn a certificate that any employer can verify online." },
+      "bn": { "say": "পাস করলে পাবেন এমন সার্টিফিকেট, যা যেকোনো নিয়োগকর্তা অনলাইনে যাচাই করতে পারেন।" }
+    },
+    {
+      "en": { "say": "Admins manage courses, exams, live classes, and the AI agents from one portal.", "show": "Admins manage courses, exams, live classes and the AI agents from one portal." },
+      "bn": { "say": "অ্যাডমিনরা একটি পোর্টাল থেকেই কোর্স, পরীক্ষা, লাইভ ক্লাস ও এআই এজেন্ট পরিচালনা করেন।" }
+    },
+    {
+      "en": { "say": "And everything works in English and Bangla.", "show": "And everything works in English and Bangla." },
+      "bn": { "say": "আর সবকিছুই চলে ইংরেজি ও বাংলায়।" }
+    },
+    {
+      "en": { "say": "AI Academy. Rehearse the assessment before the officer asks. Start learning today.", "show": "AI Academy. Rehearse the assessment before the officer asks. Start learning today." },
+      "bn": { "say": "এআই একাডেমি। অফিসার প্রশ্ন করার আগেই প্রস্তুতি নিন। আজই শেখা শুরু করুন।" }
+    }
+  ]
+}

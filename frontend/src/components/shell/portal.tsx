@@ -219,7 +219,6 @@ export function PortalShell({ role, children }: { role: Role; children: ReactNod
                         active ? "bg-tint/[0.09] text-text shadow-sm" : "text-muted hover:bg-tint/[0.04] hover:text-text",
                       )}
                     >
-                      {active && <span className="absolute -left-3 top-1/2 h-5 w-[3px] -translate-y-1/2 rounded-r bg-indigo" />}
                       <i.icon size={17} strokeWidth={1.8} className={active ? "text-indigo" : "text-faint group-hover:text-muted"} />
                       {t(i.label)}
                     </Link>
@@ -250,8 +249,8 @@ export function PortalShell({ role, children }: { role: Role; children: ReactNod
       <aside className="glass fixed inset-y-3 left-3 z-30 hidden w-[248px] !rounded-[24px] lg:block">{sidebar}</aside>
       {drawer && (
         <div className="fixed inset-0 z-50 lg:hidden">
-          <div className="absolute inset-0 bg-[#1b2266]/20 backdrop-blur-sm" onClick={() => setDrawer(false)} />
-          <aside className="glass-strong pop absolute inset-y-2 left-2 w-[272px]">{sidebar}</aside>
+          <div className="absolute inset-0 bg-[#1b2266]/20 backdrop-blur-sm fade-in" onClick={() => setDrawer(false)} />
+          <aside className="glass-strong drawer-in absolute inset-y-2 left-2 w-[272px]">{sidebar}</aside>
         </div>
       )}
 
@@ -289,7 +288,7 @@ export function PortalShell({ role, children }: { role: Role; children: ReactNod
                 {unread > 0 && <span className="absolute right-1.5 top-1 h-2 w-2 rounded-full bg-orchid" />}
               </button>
               {bell && (
-                <div className="glass-strong pop absolute right-0 top-11 w-[min(88vw,360px)] p-2">
+                <div className="glass-strong pop-menu absolute right-0 top-11 w-[min(88vw,360px)] p-2">
                   <div className="flex items-center justify-between px-3 py-2">
                     <span className="text-sm font-semibold">{t("Notifications")}</span>
                     <button className="text-xs text-indigo hover:underline" onClick={markAllRead}>
@@ -318,7 +317,7 @@ export function PortalShell({ role, children }: { role: Role; children: ReactNod
                 </span>
               </button>
               {menu && (
-                <div className="glass-strong pop absolute right-0 top-12 w-56 p-1.5">
+                <div className="glass-strong pop-menu absolute right-0 top-12 w-56 p-1.5">
                   <Link href="/" className="block rounded-lg px-3 py-2 text-sm text-muted hover:bg-tint/5 hover:text-text">
                     {t("Public site")}
                   </Link>
@@ -343,7 +342,9 @@ export function PortalShell({ role, children }: { role: Role; children: ReactNod
         </div>
       </header>
 
-      <main className="mx-auto max-w-[1320px] px-3 pb-16 pt-6 sm:px-5 lg:pt-8">{children}</main>
+      <main id="main" tabIndex={-1} className="mx-auto max-w-[1320px] px-3 pb-16 pt-6 outline-none sm:px-5 lg:pt-8">
+        {children}
+      </main>
     </div>
   );
 }

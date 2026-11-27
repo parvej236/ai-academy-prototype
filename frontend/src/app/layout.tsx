@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Noto_Sans_Bengali } from "next/font/google";
 import { StoreProvider } from "@/lib/store";
 import { Toaster } from "@/components/ui";
+import { SkipLink } from "@/components/shell/skip-link";
 import "./globals.css";
 
 // Inter for Latin, Noto Sans Bengali for Bangla: Noto is drawn to match Inter's
@@ -21,6 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-dvh">
         <div className="ambient" aria-hidden />
         <StoreProvider>
+          <SkipLink />
           {children}
           <Toaster />
         </StoreProvider>

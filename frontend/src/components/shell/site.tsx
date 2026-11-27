@@ -117,7 +117,7 @@ export function SiteFooter() {
           </div>
         ))}
       </div>
-      <p className="mx-auto mt-12 max-w-7xl text-xs text-faint">© 2026 Tradevics AI</p>
+      <p className="mx-auto mt-12 max-w-7xl text-xs text-faint">© 2026 Tradevics AI. {t("AI Academy is Module 13 of the Tradevics AI platform.")}</p>
     </footer>
   );
 }

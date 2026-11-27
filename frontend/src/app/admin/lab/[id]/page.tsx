@@ -55,8 +55,8 @@ export default function CaseBuilder() {
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h1 className="font-display text-2xl font-semibold">Case builder</h1>
-          <div className="mt-2 flex items-center gap-2">
-            <input className="field !h-9 w-80 max-w-full font-semibold" value={title} onChange={(e) => setTitle(e.target.value)} aria-label="Case title" />
+          <div className="mt-2 flex flex-wrap items-center gap-2">
+            <input className="field !h-9 min-w-0 flex-1 font-semibold sm:w-80 sm:flex-none" value={title} onChange={(e) => setTitle(e.target.value)} aria-label="Case title" />
             <StateBadge state={status} />
           </div>
         </div>

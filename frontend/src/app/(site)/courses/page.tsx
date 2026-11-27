@@ -63,8 +63,8 @@ export default function CoursesPage() {
       ) : (
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {list.map((c) => (
-            <Link key={c.slug} href={`/courses/${c.slug}`} className="glass group flex flex-col overflow-hidden transition-colors hover:border-tint/20">
-              <Cover code={c.code} hue={c.hue} className="h-36" />
+            <Link key={c.slug} href={`/courses/${c.slug}`} className="glass group flex flex-col overflow-hidden lift">
+              <Cover code={c.code} hue={c.hue} category={c.category} className="h-36" />
               <div className="flex flex-1 flex-col p-5">
                 <div className="flex flex-wrap gap-2">
                   <Badge tone="indigo">{c.category}</Badge>

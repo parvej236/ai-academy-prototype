@@ -95,7 +95,7 @@ export default function AdminCourses() {
               <tr key={c.slug}>
                 <td>
                   <div className="flex items-center gap-3">
-                    <Cover code={c.code} hue={c.hue} className="h-10 w-10 shrink-0 rounded-lg [&>span]:hidden" />
+                    <Cover code={c.code} hue={c.hue} category={c.category} className="h-10 w-10 shrink-0 rounded-lg [&>span]:hidden" />
                     <div>
                       <p className="font-medium">{c.title}</p>
                       <p className="text-xs text-faint">

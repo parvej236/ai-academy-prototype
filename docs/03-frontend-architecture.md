@@ -21,7 +21,8 @@ frontend/src/
     ui/                shared primitives
     charts/            SVG charts
     shell/             site header/footer, portal shell + Paywall
-    landing/           hero simulator console
+    landing/           hero simulator console, product tour video player
+    illustrations/     SVG illustrations and course category glyphs
   lib/
     data.ts            all dummy data and types (the future API contract)
     store.tsx          client state + actions (stand-in for API calls)
@@ -62,6 +63,31 @@ Course content, questions and forum posts stay in their authored language. The C
 | `/admin/questions` "Generate" | Examiner Agent generation job, results stored as drafts |
 | Live room captions and notes | Meeting provider (Zoom or Jitsi) + transcription pipeline events |
 | Toast-only admin actions (save, export, rotate key) | Corresponding admin endpoints, with audit log writes |
+
+## Product tour video
+
+The home-page video is recorded from the running app, so it shows real screens, and has a voice-over in English and Bangla. To rebuild it after the UI or the script changes:
+
+```bash
+# one-time setup, outside the repo
+mkdir -p /tmp/tour && cd /tmp/tour
+npm init -y && npm i playwright-core
+python3 -m venv venv && ./venv/bin/pip install imageio-ffmpeg pillow edge-tts
+
+# with the app running on http://localhost:3000
+node <repo>/tools/tour-video/capture.mjs http://localhost:3000 frames <repo>/frontend/public/mark.png
+./venv/bin/python <repo>/tools/tour-video/build.py frames <repo>/frontend/public/media en bn
+```
+
+| File | What it does |
+|---|---|
+| `tools/tour-video/capture.mjs` | Drives Chrome (`/usr/bin/google-chrome`) through 15 scenes and saves screenshots |
+| `tools/tour-video/narration.json` | The voice-over script: one line per scene in each language, and the voice for each language |
+| `tools/tour-video/build.py` | Synthesises the narration, times each scene to its line, adds the zoom and crossfades, mixes and normalises the audio, and writes both videos, captions and the poster |
+
+To change what the narrator says, edit `narration.json` and rerun `build.py`. Delete the `.tts-<lang>` folder inside the output directory to force fresh audio. The scene list in `capture.mjs` and the lines in `narration.json` must stay the same length.
+
+**Voice licensing.** The voices come from Microsoft's free Read Aloud service through `edge-tts`. That's fine for a prototype and client demos, but its terms don't clearly cover commercial use. Before public launch, either record a human voice artist with the same script, or generate the audio through Azure AI Speech (paid, licensed for commercial use, same voices). Either way, only the audio step changes.
 
 ## Conventions
 - Pages are client components because they're interactive. Don't export helpers from `page.tsx`; put them in `lib/`.

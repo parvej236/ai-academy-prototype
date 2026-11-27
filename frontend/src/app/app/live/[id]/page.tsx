@@ -188,7 +188,7 @@ export default function LiveRoom() {
               {/* live caption */}
               <div className="absolute inset-x-6 bottom-5 rounded-xl bg-black/60 px-4 py-2.5 text-center text-sm backdrop-blur">{liveScript[lines - 1].text}</div>
             </div>
-            <div className="flex items-center justify-center gap-2 p-3">
+            <div className="flex flex-wrap items-center justify-center gap-2 p-3">
               <button onClick={() => setMic(!mic)} className={cx("btn btn-sm", mic ? "btn-primary" : "btn-glass")} aria-pressed={mic}>
                 {mic ? <Mic size={15} /> : <MicOff size={15} />} {mic ? "Mic on" : "Muted"}
               </button>

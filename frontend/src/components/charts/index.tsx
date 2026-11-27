@@ -9,7 +9,7 @@ import { useState } from "react";
 export const S1 = "#0b93ab";
 export const S2 = "#b02fd1";
 const GRID = "rgba(27,34,102,0.08)";
-const AXIS = "#7a82a5";
+const AXIS = "#656c90";
 
 function Tip({ x, y, children }: { x: number; y: number; children: React.ReactNode }) {
   return (

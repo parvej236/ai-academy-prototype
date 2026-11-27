@@ -69,7 +69,41 @@ export default function Schedule() {
           })}
         </div>
       </div>
-      <div className="glass overflow-x-auto">
+      {/* phones: agenda list by day */}
+      <div className="space-y-3 md:hidden">
+        {days.map((dname, di) => {
+          const dayItems = items.filter((i) => i.day === di && filter.includes(i.type)).sort((a, b) => a.start - b.start);
+          return (
+            <section key={dname} className="glass p-4">
+              <h2 className={cx("text-sm font-semibold", di === 3 && "text-indigo")}>
+                {dname}
+                {di === 3 && " (today)"}
+              </h2>
+              {dayItems.length === 0 ? (
+                <p className="mt-2 text-sm text-faint">Nothing scheduled</p>
+              ) : (
+                <ul className="mt-3 space-y-2">
+                  {dayItems.map((i) => (
+                    <li key={i.id} className={cx("flex items-center gap-3 rounded-xl border px-3 py-2.5 text-sm", typeStyle[i.type])}>
+                      <span className="tnum w-12 shrink-0 font-semibold">
+                        {Math.floor(i.start)}:{i.start % 1 ? "30" : "00"}
+                      </span>
+                      <span className="min-w-0 flex-1">
+                        <span className="block truncate font-semibold">{i.title}</span>
+                        <span className="block text-xs opacity-75">
+                          {i.type}, {i.who}
+                        </span>
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </section>
+          );
+        })}
+      </div>
+
+      <div className="glass hidden overflow-x-auto md:block">
         <div className="grid min-w-[880px]" style={{ gridTemplateColumns: "56px repeat(7, 1fr)" }}>
           <div />
           {days.map((d, i) => (

@@ -57,6 +57,34 @@ Charts (`LineChart`, `BarChart`, `Radar`, `Ring`, `BarList`) are hand-built SVG 
 
 String props on `PageHeader`, `PanelHead`, `Tabs`, `Stat` and `Empty` are translated automatically.
 
+## Illustrations and media
+
+**Illustrations** live in `frontend/src/components/illustrations`. They are hand-drawn SVG React components, flat with no gradients, using only brand colours and the 45° diamond motif from the logo:
+
+| Component | Where it's used |
+|---|---|
+| `LearnArt`, `LabArt`, `ExamArt`, `CertifyArt` | Home page, "From first lesson to a certificate" steps |
+| `LiveArt` | Home page, live classes panel |
+| `PortScene` | Login and sign-up side panel (on navy) |
+| `LostArt` | 404 page |
+| `EmptyArt` | Every empty state, through `<Empty>` |
+| `CategoryGlyph` | Course covers: one white line icon per category |
+
+All illustrations are decorative (`aria-hidden`), and the text next to them says the same thing.
+
+**Product tour video** lives in `frontend/public/media`, with a voice-over in each language:
+
+| File | Purpose |
+|---|---|
+| `ai-academy-tour-en.mp4` | Tour narrated in English (voice: Andrew), 1080p H.264 with AAC audio |
+| `ai-academy-tour-bn.mp4` | Tour narrated in Bangla (voice: Pradeep) |
+| `captions-en.vtt`, `captions-bn.vtt` | Captions matching each narration, off by default |
+| `ai-academy-tour-poster.jpg` | Poster shown before play |
+
+The player loads the version that matches the site language and switches when the language changes.
+
+The video is only downloaded when someone presses play. To re-record it after screens change, see `tools/tour-video/` and [03-frontend-architecture.md](03-frontend-architecture.md#product-tour-video).
+
 ## Rules we hold to
 
 - One accent colour. Status colours never carry decoration.

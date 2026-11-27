@@ -22,7 +22,7 @@ export default function LabSession() {
   const [typing, setTyping] = useState(true);
   const [scores, setScores] = useState<{ criterion: string; score: number }[]>([]);
   const [free, setFree] = useState("");
-  const endRef = useRef<HTMLDivElement>(null);
+  const chatRef = useRef<HTMLDivElement>(null);
   const finished = c ? step >= c.steps.length : false;
 
   // officer "types" the first question
@@ -36,7 +36,8 @@ export default function LabSession() {
   }, [c]);
 
   useEffect(() => {
-    endRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    const el = chatRef.current;
+    if (el) el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });
   }, [msgs, typing]);
 
   if (!c) notFound();
@@ -142,7 +143,7 @@ export default function LabSession() {
             </div>
           </div>
 
-          <div className="thin-scroll flex-1 space-y-4 overflow-y-auto p-5">
+          <div ref={chatRef} className="thin-scroll max-h-[60dvh] flex-1 space-y-4 overflow-y-auto p-4 sm:p-5 xl:max-h-[70vh]">
             {msgs.map((m, i) =>
               m.from === "engine" ? (
                 <div key={i} className="pop mx-auto flex max-w-[92%] items-start gap-3 rounded-xl border border-line bg-tint/[0.04] px-4 py-3 text-[0.82rem]">
@@ -184,7 +185,6 @@ export default function LabSession() {
                 </span>
               </div>
             )}
-            <div ref={endRef} />
           </div>
 
           {!finished && !typing && (

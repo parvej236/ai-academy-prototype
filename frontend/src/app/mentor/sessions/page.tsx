@@ -44,12 +44,14 @@ export default function MentorSessions() {
                         {s.name}, {fmtDateTime(r.at)}
                       </p>
                     </div>
-                    <button className="btn btn-ghost btn-sm" onClick={() => decide(r.id, false)}>
-                      <X size={14} /> Decline
-                    </button>
-                    <button className="btn btn-primary btn-sm" onClick={() => decide(r.id, true)}>
-                      <Check size={14} /> Confirm
-                    </button>
+                    <div className="flex w-full justify-end gap-2 sm:w-auto">
+                      <button className="btn btn-ghost btn-sm" onClick={() => decide(r.id, false)}>
+                        <X size={14} /> Decline
+                      </button>
+                      <button className="btn btn-primary btn-sm" onClick={() => decide(r.id, true)}>
+                        <Check size={14} /> Confirm
+                      </button>
+                    </div>
                   </li>
                 );
               })}

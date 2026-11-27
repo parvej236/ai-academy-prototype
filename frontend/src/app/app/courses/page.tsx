@@ -31,8 +31,8 @@ export default function MyCourses() {
             {mine.map((c) => {
               const p = pct(c.slug);
               return (
-                <Link key={c.slug} href={`/app/learn/${c.slug}`} className="glass flex flex-col overflow-hidden transition-colors hover:border-tint/20">
-                  <Cover code={c.code} hue={c.hue} className="h-28" />
+                <Link key={c.slug} href={`/app/learn/${c.slug}`} className="glass flex flex-col overflow-hidden lift">
+                  <Cover code={c.code} hue={c.hue} category={c.category} className="h-28" />
                   <div className="flex flex-1 flex-col p-5">
                     <div className="flex items-center justify-between">
                       <Badge tone="indigo">{c.category}</Badge>
@@ -60,7 +60,7 @@ export default function MyCourses() {
         <div className="glass divide-y divide-line overflow-hidden">
           {others.map((c) => (
             <div key={c.slug} className="flex flex-col gap-4 p-5 sm:flex-row sm:items-center">
-              <Cover code={c.code} hue={c.hue} className="h-14 w-14 shrink-0 rounded-xl [&>span:last-child]:hidden" />
+              <Cover code={c.code} hue={c.hue} category={c.category} className="h-14 w-14 shrink-0 rounded-xl [&>span:last-child]:hidden" />
               <div className="min-w-0 flex-1">
                 <p className="font-semibold">{c.title}</p>
                 <p className="mt-0.5 text-sm text-muted line-clamp-1">{c.summary}</p>

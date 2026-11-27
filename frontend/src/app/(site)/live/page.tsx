@@ -77,7 +77,7 @@ export default function LivePublic() {
         <p className="mt-1 text-sm text-muted">Each recording comes with an AI transcript, lecture notes and slides.</p>
         <div className="mt-5 grid gap-4 md:grid-cols-2">
           {recorded.map((l) => (
-            <Link key={l.id} href={user ? `/app/live/${l.id}` : "/login"} className="glass p-6 transition-colors hover:border-tint/20">
+            <Link key={l.id} href={user ? `/app/live/${l.id}` : "/login"} className="glass p-6 lift">
               <p className="text-xs text-faint">Recorded {fmtDateTime(l.start)}</p>
               <h3 className="mt-2 font-semibold">{l.title}</h3>
               <p className="mt-1 text-sm text-muted">{l.expert}</p>

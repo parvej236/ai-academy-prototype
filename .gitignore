@@ -56,12 +56,18 @@ venv/
 .ruff_cache/
 *.egg-info/
 
-# Local data and uploads
+# Local data and uploads (root-level only, so frontend/public/media stays tracked)
 *.sqlite
 *.sqlite3
 *.db
-uploads/
-media/
+/uploads/
+/media/
+/backend/uploads/
+/backend/media/
+
+# Local working folders created by design skills
+.taste-skill/
+.impeccable/
 
 # Editors and tools
 .vscode/*
